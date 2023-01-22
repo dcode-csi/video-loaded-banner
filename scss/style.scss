@@ -1,9 +1,9 @@
-@import "reset";
-@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+@import 'reset';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
 header {
 	width: 100%;
-	height: 45vh;
+	height: 40vh;
 	background: #333;
 	position: relative;
 	padding: 5vh 10vw;
@@ -12,13 +12,13 @@ header {
 	align-items: flex-start;
 
 	h1 {
-		font: bold 24px/1 "orbitron";
+		font: bold 24px/1 'orbitron';
 		color: #fff;
 	}
 	#gnb {
 		display: flex;
 		gap: 60px;
-		font: 14px/1 "arial";
+		font: 14px/1 'arial';
 		color: #ddd;
 		padding-top: 10px;
 
@@ -29,16 +29,40 @@ header {
 }
 figure {
 	width: 100%;
-	height: 55vh;
+	height: 60vh;
 	background: #111;
 	position: relative;
-	overflow: hidden;
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+	.tits {
+		position: absolute;
+		top: -5vw;
+		left: 10vw;
+
+		h2 {
+			position: absolute;
+			top: 0;
+			left: 0;
+			font: bold 5vw/1 'orbitron';
+			color: rgba(255, 255, 255, 0.1);
+			opacity: 0;
+			transform: translateX(100px);
+			transition: 1s;
+
+			&.on {
+				opacity: 1;
+				transform: translateX(0px);
+			}
+		}
+	}
 
 	.bg {
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		opacity: 0.4;
+		background: #111;
+		opacity: 1;
+		position: relative;
 
 		video {
 			position: absolute;
@@ -48,11 +72,10 @@ figure {
 			height: 100%;
 			object-fit: cover;
 			opacity: 0;
-			z-index: 1;
 			transition: opacity 2s;
 
 			&.on {
-				opacity: 1;
+				opacity: 0.4;
 			}
 		}
 	}
@@ -80,48 +103,93 @@ figure {
 				//100% / 5
 				width: calc(100% / 5);
 				height: 100%;
-				border-left: 1px solid rgba(255, 255, 255, 0.4);
+				border-left: 1px solid rgba(255, 255, 255, 0.2);
 				color: #fff;
-				padding: 5vh 3vw 10vh;
-				display: flex;
-				flex-wrap: wrap;
-				align-content: flex-end;
+				position: relative;
+				transition: border 0.5s;
 
-				p {
+				&::before {
+					content: '';
+					display: block;
 					width: 100%;
-					font: 20px/1 "orbitron";
-					margin-bottom: 20px;
-					opacity: 0.3;
+					height: 100%;
+					background: rgba(0, 0, 0, 0.5);
+					position: absolute;
+					bottom: -100%;
+					left: 0;
 					transition: 0.5s;
 				}
-				h2 {
-					width: 100%;
-					font: 24px/1 "orbitron";
-					color: #fff;
-					letter-spacing: 1px;
-					opacity: 0.5;
-					padding-top: 20px;
-					position: relative;
+
+				.txt {
+					width: 80%;
+					left: 10%;
+					position: absolute;
+					top: 60%;
 					transition: 0.5s;
 
-					&::before {
-						content: "";
+					strong {
 						display: block;
 						width: 100%;
-						height: 2px;
-						background: rgba(255, 255, 255, 0.5);
-						position: absolute;
-						top: 0;
-						left: 0;
+						font: 20px/1 'orbitron';
+						margin-bottom: 20px;
+						opacity: 0.3;
+						transition: 0.5s;
 					}
-					span {
-						display: block;
-						width: 0%;
-						height: 2px;
-						background: #fff;
-						position: absolute;
-						top: 0;
-						left: 0;
+					h2 {
+						width: 100%;
+						font: 24px/1 'orbitron';
+						color: #fff;
+						letter-spacing: 1px;
+						opacity: 0.5;
+						padding-top: 20px;
+						position: relative;
+						transition: 0.5s;
+
+						&::before {
+							content: '';
+							display: block;
+							width: 100%;
+							height: 2px;
+							background: rgba(255, 255, 255, 0.5);
+							position: absolute;
+							top: 0;
+							left: 0;
+						}
+						span {
+							display: block;
+							width: 0%;
+							height: 2px;
+							background: orange;
+							opacity: 0.7;
+							position: absolute;
+							top: 0;
+							left: 0;
+						}
+					}
+
+					p {
+						font: 12px/1.3 'arial';
+						color: #fff;
+						opacity: 0;
+						height: 0;
+						margin-top: 30px;
+						overflow: hidden;
+						transition: 0.5s;
+					}
+
+					a {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 120px;
+						height: 30px;
+						border: 1px solid rgba(255, 255, 255, 0.5);
+						font: 10px/1 'arial';
+						color: #fff;
+						opacity: 0;
+						margin-top: 30px;
+						transform: translateY(100px);
+						transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
 					}
 				}
 
@@ -133,7 +201,28 @@ figure {
 						opacity: 1;
 
 						span {
+							width: 100%;
 							animation: ani 3s linear 1;
+						}
+					}
+				}
+
+				&:hover {
+					border-left: 1px solid transparent;
+					&::before {
+						bottom: 0%;
+					}
+
+					.txt {
+						top: 20%;
+
+						p {
+							height: auto;
+							opacity: 0.4;
+						}
+						a {
+							transform: translateY(0px);
+							opacity: 1;
 						}
 					}
 				}
