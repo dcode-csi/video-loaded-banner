@@ -54,7 +54,7 @@ function prev() {
     value: -100 / showNum * 0 + '%',
     duration: speed,
     callback: () => {
-      list.append(list.firstElementChild);
+      list.prepend(list.lastElementChild);
       list.style.left = -100 / showNum + '%';
       enableClick = true;
     }
