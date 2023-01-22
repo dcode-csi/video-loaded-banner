@@ -2,6 +2,7 @@ const banner = document.querySelector('.banner');
 const bgFrame = document.querySelector('.bg');
 const tits = document.querySelectorAll('.tits h2');
 const mask = document.querySelector('.mask');
+const count = document.querySelector('.paging strong');
 let vids = null;
 let vidCount = 0;
 const list = banner.querySelector('ul');
@@ -40,6 +41,8 @@ function next() {
 			enableClick = true;
 		},
 	});
+
+	counter(current_num);
 }
 
 function prev() {
@@ -60,6 +63,8 @@ function prev() {
 			enableClick = true;
 		},
 	});
+
+	counter(current_num);
 }
 
 function activation(index) {
@@ -94,4 +99,8 @@ function createVid() {
 	});
 
 	vids[0].classList.add('on');
+}
+
+function counter(num) {
+	count.innerText = '0' + (num + 1);
 }

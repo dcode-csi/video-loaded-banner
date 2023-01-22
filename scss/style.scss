@@ -44,7 +44,7 @@ figure {
 			top: 0;
 			left: 0;
 			font: bold 5vw/1 'orbitron';
-			color: rgba(255, 255, 255, 0.1);
+			color: rgba(255, 255, 255, 0.3);
 			opacity: 0;
 			transform: translateX(100px);
 			transition: 1s;
@@ -53,6 +53,28 @@ figure {
 				opacity: 1;
 				transform: translateX(0px);
 			}
+		}
+	}
+
+	.paging {
+		position: absolute;
+		top: -50px;
+		right: 10vw;
+		font-family: 'orbitron';
+		font-size: 30px;
+		color: #bbb;
+		letter-spacing: 1px;
+
+		strong {
+			color: #fff;
+			font-weight: normal;
+			opacity: 0.7;
+		}
+		span {
+			color: #ddd;
+			display: inline-block;
+			opacity: 0.6;
+			transform: scale(0.5) translateX(-20px) translateY(10px);
 		}
 	}
 
