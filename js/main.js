@@ -1,5 +1,8 @@
 const banner = document.querySelector('.banner');
-const vids = document.querySelectorAll('.bg video')
+const bgFrame = document.querySelector('.bg');
+const mask = document.querySelector('.mask');
+let vids = null;
+let vidCount = 0;
 const list = banner.querySelector('ul');
 const len = list.children.length;
 const showNum = 3;
@@ -8,9 +11,12 @@ const btnNext = document.querySelector('.next');
 const speed = 500;
 let current_num = 0;
 let enableClick = true;
+const vidData = ['vid1.mp4', 'vid2.mp4', 'vid3.mp4', 'vid4.mp4', 'vid5.mp4'];
 
 list.style.left = -100 / showNum + '%';
 list.prepend(list.lastElementChild);
+
+createVid();
 
 btnNext.addEventListener('click', next);
 btnPrev.addEventListener('click', prev);
@@ -60,4 +66,31 @@ function activation(index) {
   for (const el of list.children) el.classList.remove('on');
   vids[index].classList.add('on');
   list.children[index].classList.add('on');
+}
+
+function createVid() {
+  let tags = '';
+  vidData.forEach((vid) => tags += `<video src='vids/${vid}' loop muted autoplay></video>`);
+  bgFrame.innerHTML = tags;
+
+  vids = bgFrame.querySelectorAll('video');
+  vids.forEach((vid, idx) => {
+
+    vid.onloadeddata = () => {
+      vidCount++;
+      console.log(vidCount);
+      if (vidCount === vidData.length) {
+        new Anime(mask, {
+          prop: 'opacity',
+          value: 0,
+          callback: () => {
+            mask.remove();
+          }
+        })
+      }
+    };
+
+  })
+
+  vids[0].classList.add('on');
 }
