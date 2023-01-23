@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+body {
+  width: 100%;
+}
+
 header {
   width: 100%;
   height: 40vh;
@@ -39,6 +43,14 @@ header #gnb {
 header #gnb li {
   cursor: pointer;
 }
+header .fa-bars {
+  position: absolute;
+  right: 10vw;
+  top: 5vh;
+  font-size: 24px;
+  color: #fff;
+  display: none;
+}
 
 figure {
   width: 100%;
@@ -48,6 +60,7 @@ figure {
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 figure .tits {
+  height: 12vw;
   position: absolute;
   top: -5vw;
   left: 10vw;
@@ -59,12 +72,15 @@ figure .tits h2 {
   font: bold 5vw/1 "orbitron";
   color: rgba(255, 255, 255, 0.2);
   opacity: 0;
-  transform: translateX(100px);
+  transform: translateX(-100px);
   transition: 1s;
 }
 figure .tits h2.on {
   opacity: 1;
   transform: translateX(0px);
+}
+figure .tits h2.on h2 {
+  width: auto;
 }
 figure .paging {
   position: absolute;
@@ -293,6 +309,50 @@ figure .controls .btns li:active i {
   width: 600px;
 }
 
+@media screen and (max-width: 1159px) {
+  header #gnb {
+    display: none;
+  }
+  header .fa-bars {
+    display: block;
+  }
+  figure .tits {
+    display: none;
+  }
+  figure .banner {
+    width: 100%;
+  }
+  figure .controls {
+    width: 40%;
+    bottom: 100%;
+    padding: 20px 10vw;
+  }
+}
+@media screen and (max-width: 669px) {
+  figure .tits {
+    display: inline-block;
+  }
+  figure .tits h2 {
+    font-size: 10vw;
+    top: -10vw;
+  }
+  figure .controls {
+    width: 100%;
+    bottom: calc(100% + 20vw);
+  }
+  figure .paging {
+    display: none;
+  }
+  figure .banner ul li .txt h2 {
+    text-indent: -1000px;
+  }
+  figure .banner ul li .txt p {
+    display: none;
+  }
+  figure .banner ul li .txt a {
+    width: 100%;
+  }
+}
 @keyframes ani {
   0% {
     width: 0%;

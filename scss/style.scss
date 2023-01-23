@@ -26,6 +26,14 @@ header {
 			cursor: pointer;
 		}
 	}
+	.fa-bars {
+		position: absolute;
+		right: 10vw;
+		top: 5vh;
+		font-size: 24px;
+		color: #fff;
+		display: none;
+	}
 }
 figure {
 	width: 100%;
@@ -35,6 +43,7 @@ figure {
 	border-top: 1px solid rgba(255, 255, 255, 0.3);
 
 	.tits {
+		height: 12vw;
 		position: absolute;
 		top: -5vw;
 		left: 10vw;
@@ -46,12 +55,16 @@ figure {
 			font: bold 5vw/1 'orbitron';
 			color: rgba(255, 255, 255, 0.2);
 			opacity: 0;
-			transform: translateX(100px);
+			transform: translateX(-100px);
 			transition: 1s;
 
 			&.on {
 				opacity: 1;
 				transform: translateX(0px);
+
+				h2 {
+					width: auto;
+				}
 			}
 		}
 	}
@@ -313,6 +326,61 @@ figure {
 	left: 0;
 	img {
 		width: 600px;
+	}
+}
+
+@media screen and (max-width: 1159px) {
+	header {
+		#gnb {
+			display: none;
+		}
+		.fa-bars {
+			display: block;
+		}
+	}
+
+	figure {
+		.tits {
+			display: none;
+		}
+		.banner {
+			width: 100%;
+		}
+		.controls {
+			width: 40%;
+			bottom: 100%;
+			padding: 20px 10vw;
+		}
+	}
+}
+
+@media screen and (max-width: 669px) {
+	figure {
+		.tits {
+			display: inline-block;
+			h2 {
+				font-size: 10vw;
+				top: -10vw;
+			}
+		}
+		.controls {
+			width: 100%;
+			bottom: calc(100% + 20vw);
+		}
+		.paging {
+			display: none;
+		}
+		.banner ul li .txt {
+			h2 {
+				text-indent: -1000px;
+			}
+			p {
+				display: none;
+			}
+			a {
+				width: 100%;
+			}
+		}
 	}
 }
 
