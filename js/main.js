@@ -3,25 +3,43 @@ const bgFrame = document.querySelector('.bg');
 const tits = document.querySelectorAll('.tits h2');
 const mask = document.querySelector('.mask');
 const count = document.querySelector('.paging strong');
-let vids = null;
-let vidCount = 0;
 const list = banner.querySelector('ul');
-const len = list.children.length;
-const showNum = 3;
 const btnPrev = document.querySelector('.prev');
 const btnNext = document.querySelector('.next');
+const btnPlay = document.querySelector('.play');
+const btnPause = document.querySelector('.pause');
+const vidData = ['vid1.mp4', 'vid2.mp4', 'vid3.mp4', 'vid4.mp4', 'vid5.mp4'];
 const speed = 500;
+const interval = 3000;
+const len = list.children.length;
+let vids = null;
+let vidCount = 0;
+const showNum = 3;
 let current_num = 0;
 let enableClick = true;
-const vidData = ['vid1.mp4', 'vid2.mp4', 'vid3.mp4', 'vid4.mp4', 'vid5.mp4'];
+let timer = null;
 
-list.style.left = -100 / showNum + '%';
-list.prepend(list.lastElementChild);
-
+init();
 createVid();
+startRolling();
 
-btnNext.addEventListener('click', next);
-btnPrev.addEventListener('click', prev);
+btnNext.addEventListener('click', () => {
+	next();
+	stopRolling();
+});
+btnPrev.addEventListener('click', () => {
+	prev();
+	stopRolling();
+});
+btnPlay.addEventListener('click', startRolling);
+btnPause.addEventListener('click', stopRolling);
+
+function init() {
+	list.style.left = -100 / showNum + '%';
+	list.prepend(list.lastElementChild);
+	list.prepend(list.lastElementChild);
+	list.children[0].classList.add('on');
+}
 
 function next() {
 	if (!enableClick) return;
@@ -68,11 +86,12 @@ function prev() {
 }
 
 function activation(index) {
+	const currentList = banner.querySelector('ul');
 	for (const el of vids) el.classList.remove('on');
-	for (const el of list.children) el.classList.remove('on');
+	for (const el of currentList.children) el.classList.remove('on');
 	for (const el of tits) el.classList.remove('on');
 	vids[index].classList.add('on');
-	list.children[index].classList.add('on');
+	currentList.children[index].classList.add('on');
 	tits[index].classList.add('on');
 }
 
@@ -90,6 +109,7 @@ function createVid() {
 				new Anime(mask, {
 					prop: 'opacity',
 					value: 0,
+					duration: 1000,
 					callback: () => {
 						mask.remove();
 					},
@@ -103,4 +123,17 @@ function createVid() {
 
 function counter(num) {
 	count.innerText = '0' + (num + 1);
+}
+
+function startRolling() {
+	next();
+	timer = setInterval(next, interval);
+	btnPlay.classList.add('on');
+	btnPause.classList.remove('on');
+}
+
+function stopRolling() {
+	clearInterval(timer);
+	btnPause.classList.add('on');
+	btnPlay.classList.remove('on');
 }

@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/b0061ffa69.js" crossorigin="anonymous"></script>
   <script defer src="js/anime.js"></script>
   <script defer src="js/main.js"></script>
 
@@ -46,7 +47,7 @@
 
     <div class="banner">
       <ul>
-        <li class="on">
+        <li>
           <div class="txt">
             <strong>01</strong>
             <h2><span></span>Department</h2>
@@ -99,13 +100,21 @@
       </ul>
     </div>
 
-    <nav class="btns">
-      <div class="prev">prev</div>
-      <div class="next">next</div>
+    <nav class="controls">
+      <ul class="auto">
+        <li class="play on"><i class="fa-solid fa-play"></i></li>
+        <li class="pause"><i class="fa-solid fa-pause"></i></li>
+      </ul>
+      <ul class="btns">
+        <li class="prev"><i class="fa-solid fa-chevron-left"></i></li>
+        <li class="next"><i class="fa-solid fa-chevron-right"></i></li>
+      </ul>
     </nav>
   </figure>
 
-  <aside class="mask">Loading...</aside>
+  <aside class="mask">
+    <img src="vids/loading.gif">
+  </aside>
 </body>
 
 </html>

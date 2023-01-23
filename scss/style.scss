@@ -4,7 +4,7 @@
 header {
 	width: 100%;
 	height: 40vh;
-	background: #333;
+	background: #191f26;
 	position: relative;
 	padding: 5vh 10vw;
 	display: flex;
@@ -30,7 +30,7 @@ header {
 figure {
 	width: 100%;
 	height: 60vh;
-	background: #111;
+	background: #191f26;
 	position: relative;
 	border-top: 1px solid rgba(255, 255, 255, 0.3);
 
@@ -44,7 +44,7 @@ figure {
 			top: 0;
 			left: 0;
 			font: bold 5vw/1 'orbitron';
-			color: rgba(255, 255, 255, 0.3);
+			color: rgba(255, 255, 255, 0.2);
 			opacity: 0;
 			transform: translateX(100px);
 			transition: 1s;
@@ -82,7 +82,7 @@ figure {
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		background: #111;
+		background: #15202c;
 		opacity: 1;
 		position: relative;
 
@@ -135,7 +135,7 @@ figure {
 					display: block;
 					width: 100%;
 					height: 100%;
-					background: rgba(0, 0, 0, 0.5);
+					background: rgba(21, 32, 44, 0.5);
 					position: absolute;
 					bottom: -100%;
 					left: 0;
@@ -224,7 +224,7 @@ figure {
 
 						span {
 							width: 100%;
-							animation: ani 3s linear 1;
+							animation: ani 2s linear 1;
 						}
 					}
 				}
@@ -252,32 +252,68 @@ figure {
 		}
 	}
 
-	.btns {
+	.controls {
 		position: absolute;
-		left: 100px;
-		bottom: 50px;
+		bottom: 0px;
+		left: 0;
+		width: 30%;
+		padding: 50px;
 		display: flex;
-		gap: 60px;
-		color: #fff;
+		justify-content: space-between;
 
-		> * {
-			cursor: pointer;
+		.auto {
+			display: flex;
+			gap: 20px;
+			color: #fff;
+
+			li {
+				cursor: pointer;
+				transition: 0.5s;
+				opacity: 0.5;
+
+				&.on {
+					opacity: 1;
+					transform: scale(1.3);
+				}
+			}
+		}
+
+		.btns {
+			display: flex;
+			gap: 20px;
+			color: #fff;
+
+			li {
+				cursor: pointer;
+				i {
+					display: inline-block;
+					transform: scale(1);
+					opacity: 0.5;
+				}
+
+				&:active {
+					i {
+						animation: scale 0.2s linear 1;
+					}
+				}
+			}
 		}
 	}
 }
 .mask {
 	width: 100%;
 	height: 100vh;
-	background: #111;
+	background: #191f26;
+	overflow: hidden;
 	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 3;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 10vw;
-	color: #fff;
+	top: 0;
+	left: 0;
+	img {
+		width: 600px;
+	}
 }
 
 @keyframes ani {
@@ -286,5 +322,15 @@ figure {
 	}
 	100% {
 		width: 100%;
+	}
+}
+@keyframes scale {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(5);
+		opacity: 0;
 	}
 }
